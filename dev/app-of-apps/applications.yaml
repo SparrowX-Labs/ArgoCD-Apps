@@ -1,0 +1,21 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sparrowx-dev-applications
+  namespace: argocd
+spec:
+  project: sparrowx-dev
+  source:
+    repoURL: https://github.com/SparrowX-Labs/ArgoCD-Apps.git
+    targetRevision: main
+    path: dev/applications
+    directory:
+      recurse: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
