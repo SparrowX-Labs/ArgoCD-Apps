@@ -8,10 +8,10 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/SparrowX-Labs/argocd-apps.git
+    repoURL: https://github.com/SparrowX-Labs/ArgoCD-Apps.git
     targetRevision: main
     path: dev/app-of-apps
-
+    
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
