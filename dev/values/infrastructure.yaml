@@ -1,0 +1,10 @@
+environment: dev
+projectName: sparrowx
+region: eu-west-1
+
+vpcId: "vpc-01ce8486371a1c28e"
+
+privateSubnetIds:
+  - "subnet-0b99303733779ee8f"
+  - "subnet-0acf7cde80c301a9f"
+  - "subnet-0d2d7579846008375"
