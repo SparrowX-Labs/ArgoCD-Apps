@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: task-api-resources
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: sparrowx-dev
+
+  sources:
+    - repoURL: https://github.com/SparrowX-Labs/Custom-Apps-HelmCharts.git
+      targetRevision: main
+      path: dev/infrastructure-crossplane-helmchart
+      helm:
+        valueFiles:
+          - $values/dev/values/infrastructure.yaml
+          - $crossplane/environments/dev/task-api.yaml
+
+    - repoURL: https://github.com/SparrowX-Labs/ArgoCD-Apps.git
+      targetRevision: main
+      ref: values
+    - repoURL: https://github.com/SparrowX-Labs/crossplane.git
+      targetRevision: main
+      ref: crossplane
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crossplane-system
