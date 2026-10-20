@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sparrowx-dev-crossplane-compositions
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: sparrowx-dev
+  source:
+    repoURL: https://github.com/SparrowX-Labs/crossplane.git
+    targetRevision: main
+    path: composite-resource-definitions
+    directory:
+      recurse: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crossplane-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: customer-api
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: sparrowx-dev
 
@@ -13,7 +15,7 @@ spec:
       helm:
         valueFiles:
           - $values/dev/values/infrastructure.yaml
-          - $crossplane/dev/customer-api.yaml
+          - $crossplane/environments/dev/customer-api.yaml
 
     - repoURL: https://github.com/SparrowX-Labs/ArgoCD-Apps.git
       targetRevision: main

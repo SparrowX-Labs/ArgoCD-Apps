@@ -1,6 +1,8 @@
 environment: dev
 projectName: sparrowx
 region: eu-west-1
+hostedZoneId: "Z0571420RDCDTPYM76M6"
+hostedZoneName: "dev.sparrowx.internal"
 
 vpcId: "vpc-01ce8486371a1c28e"
 
