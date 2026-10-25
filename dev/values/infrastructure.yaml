@@ -10,3 +10,8 @@ privateSubnetIds:
   - "subnet-0b99303733779ee8f"
   - "subnet-0acf7cde80c301a9f"
   - "subnet-0d2d7579846008375"
+
+privateSubnetCidrs:
+  - 10.20.4.0/24
+  - 10.20.5.0/24
+  - 10.20.6.0/24
