@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: sparrowx-dev-root
   namespace: argocd
+  labels:
+    sparrowx.io/category: root
 spec:
   project: default
   source:
