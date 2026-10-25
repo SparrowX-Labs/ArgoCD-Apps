@@ -3,6 +3,9 @@ kind: Application
 metadata:
   name: customer-api
   namespace: argocd
+  labels:
+    sparrowx.io/category: applications
+    sparrowx.io/app: customer-api    
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
