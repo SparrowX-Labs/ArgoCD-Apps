@@ -7,12 +7,16 @@ metadata:
     sparrowx.io/category: application
 spec:
   project: sparrowx-dev
-  source:
-    repoURL: https://github.com/SparrowX-Labs/gateway-api.git
-    targetRevision: main
-    path: dev
-    directory:
-      recurse: true
+  sources:
+    - repoURL: https://github.com/SparrowX-Labs/Custom-Apps-HelmCharts.git
+      targetRevision: main
+      path: dev/gateway-api-helmchart
+      helm:
+        valueFiles:
+          - $values/dev/*.yaml
+    - repoURL: https://github.com/SparrowX-Labs/gateway-api.git
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: default
