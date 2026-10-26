@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: task-api-resources
+  name: web-portal-resources
   namespace: argocd
   labels:
     sparrowx.io/category: infrastructre
-    sparrowx.io/app: task-api 
+    sparrowx.io/app: web-portal    
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
@@ -18,7 +18,7 @@ spec:
       helm:
         valueFiles:
           - $values/dev/values/infrastructure.yaml
-          - $crossplane/environments/dev/task-api.yaml
+          - $crossplane/environments/dev/web-portal.yaml
 
     - repoURL: https://github.com/SparrowX-Labs/ArgoCD-Apps.git
       targetRevision: main
