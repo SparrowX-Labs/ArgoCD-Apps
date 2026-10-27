@@ -1,11 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: customer-api
+  name: customer-api-dev
   namespace: argocd
   labels:
     sparrowx.io/category: applications
-    sparrowx.io/app: customer-api    
+    sparrowx.io/app: customer-api
+    sparrowx.io/environment: dev    
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
@@ -22,7 +23,7 @@ spec:
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: dev
   syncPolicy:
     automated:
       prune: true

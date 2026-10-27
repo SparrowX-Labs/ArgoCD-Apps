@@ -6,8 +6,9 @@ metadata:
   namespace: argocd
   labels:
     sparrowx.io/category: root
+    sparrowx.io/environment: dev
 spec:
-  project: default
+  project: sparrowx-dev
   source:
     repoURL: https://github.com/SparrowX-Labs/ArgoCD-Apps.git
     targetRevision: main
@@ -26,6 +27,10 @@ spec:
 # Bootstrap the Root Application
 
 # The root Application must be created once manually because it is the entry point to the GitOps hierarchy.
-#It is bootstrapped using kubectl apply -f dev/root.yaml rather than the Argo CD UI so that its definition remains version-controlled in Git and can be managed declaratively alongside the rest of the platform.
+#It is bootstrapped using 
+
+#kubectl apply -f dev/root.yaml 
+
+#rather than the Argo CD UI so that its definition remains version-controlled in Git and can be managed declaratively alongside the rest of the platform.
 
 # Once bootstrapped, Argo CD discovers and manages the child App of Apps and their Applications from Git.

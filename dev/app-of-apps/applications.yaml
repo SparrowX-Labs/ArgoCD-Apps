@@ -6,6 +6,7 @@ metadata:
   namespace: argocd
   labels:
     sparrowx.io/category: root
+    sparrowx.io/environment: dev
 spec:
   project: sparrowx-dev
   source:
@@ -20,7 +21,6 @@ spec:
   ignoreDifferences:
     - group: argoproj.io
       kind: Application
-      name: customer-api
       namespace: argocd
       jsonPointers:
         - /spec/sources/0/helm/parameters

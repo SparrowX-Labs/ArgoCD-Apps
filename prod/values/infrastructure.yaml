@@ -1,0 +1,17 @@
+environment: prod
+projectName: sparrowx
+region: eu-west-1
+hostedZoneId: "Z00568888W8ZEETLRYN8"
+hostedZoneName: "prod.sparrowx.internal"
+
+vpcId: "vpc-01ce8486371a1c28e"
+
+privateSubnetIds:
+  - "subnet-0b99303733779ee8f"
+  - "subnet-0acf7cde80c301a9f"
+  - "subnet-0d2d7579846008375"
+
+privateSubnetCidrs:
+  - 10.20.4.0/24
+  - 10.20.5.0/24
+  - 10.20.6.0/24

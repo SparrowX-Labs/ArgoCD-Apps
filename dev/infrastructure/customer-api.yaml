@@ -1,11 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: customer-api-resources
+  name: customer-api-dev-resources
   namespace: argocd
   labels:
     sparrowx.io/category: infrastructre
-    sparrowx.io/app: customer-api    
+    sparrowx.io/app: customer-api
+    sparrowx.io/environment: dev    
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:

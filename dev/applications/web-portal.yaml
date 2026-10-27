@@ -1,11 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: web-portal
+  name: web-portal-dev
   namespace: argocd
   labels:
     sparrowx.io/category: applications
-    sparrowx.io/app: web-portal    
+    sparrowx.io/app: web-portal
+    sparrowx.io/environment: dev
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
@@ -22,7 +23,7 @@ spec:
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: dev
   syncPolicy:
     automated:
       prune: true

@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
   labels:
     sparrowx.io/category: infrastructre
+    sparrowx.io/environment: dev
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
