@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: customer-api
+  namespace: argocd
+  labels:
+    sparrowx.io/category: applications
+    sparrowx.io/app: customer-api   
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: sparrowx-dev
+  sources:
+    - repoURL: https://github.com/SparrowX-Labs/Custom-Apps-HelmCharts.git
+      targetRevision: main
+      path: dev/application-helmchart
+      helm:
+        valueFiles:
+          - $values/helm-values-dev.yaml
+    - repoURL: https://github.com/SparrowX-Labs/customer-api.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
