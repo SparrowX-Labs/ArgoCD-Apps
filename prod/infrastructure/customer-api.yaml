@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: customer-api-prod-resources
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   labels:
     sparrowx.io/category: infrastructre
     sparrowx.io/app: customer-api
