@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backstage-pyactions
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    sparrowx.io/category: applications
+    sparrowx.io/app: backstage-pyactions
+    sparrowx.io/environment: dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: sparrowx-dev
+  sources:
+    - repoURL: https://github.com/SparrowX-Labs/Custom-Apps-HelmCharts.git
+      targetRevision: main
+      path: dev/application-helmchart
+      helm:
+        valueFiles:
+          - $values/helm-values-dev.yaml
+    - repoURL: https://github.com/SparrowX-Labs/backstage-pyactions.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backstage
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
