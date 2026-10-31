@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: notification-api-dev
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    sparrowx.io/category: applications
+    sparrowx.io/app: notification-api
+    sparrowx.io/environment: dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: sparrowx-dev
+  sources:
+    - repoURL: https://github.com/SparrowX-Labs/Custom-Apps-HelmCharts.git
+      targetRevision: main
+      path: dev/application-helmchart
+      helm:
+        valueFiles:
+          - $values/helm-values-dev.yaml
+    - repoURL: https://github.com/SparrowX-Labs/notification-api.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
