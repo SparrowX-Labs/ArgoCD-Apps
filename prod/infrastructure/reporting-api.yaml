@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reporting-api-prod-resources
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    sparrowx.io/category: infrastructure
+    sparrowx.io/app: reporting-api
+    sparrowx.io/environment: prod
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: sparrowx-prod
+  sources:
+    - repoURL: https://github.com/SparrowX-Labs/Custom-Apps-HelmCharts.git
+      targetRevision: main
+      path: prod/infrastructure-crossplane-helmchart
+      helm:
+        valueFiles:
+          - $values/prod/values/infrastructure.yaml
+          - $crossplane/environments/prod/reporting-api.yaml
+    - repoURL: https://github.com/SparrowX-Labs/ArgoCD-Apps.git
+      targetRevision: main
+      ref: values
+    - repoURL: https://github.com/SparrowX-Labs/crossplane.git
+      targetRevision: main
+      ref: crossplane
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crossplane-system
